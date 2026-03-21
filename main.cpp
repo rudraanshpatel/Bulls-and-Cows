@@ -51,13 +51,22 @@ void countBullsAndCows(int guess, int choice){
     vector<int> choiceVector = convertToVector(choice);
     //Count bulls
     int bulls = 0;
+    vector<int> bullsIndex;
     for(int i =0; i<guessVector.size(); i++){
         if(guessVector[i]==choiceVector[i]){
             bulls+=1;
+            bullsIndex.push_back(i);
+            
         }
     }
     cout << "There are "<< bulls<<" bulls and ";
-    
+    for(int i =0; i<bullsIndex.size(); i++){
+        auto itGuess = guessVector.begin()+bullsIndex[i];
+        auto itChoice= choiceVector.begin()+bullsIndex[i];
+
+        guessVector.erase(itGuess);
+        choiceVector.erase(itChoice);
+    }
     //Count cows
     int cows = 0;
     set<int> guessSet(guessVector.begin(), guessVector.end());
@@ -76,7 +85,7 @@ void countBullsAndCows(int guess, int choice){
 void initialise(){
     int numberOfDigits = 4;
     int random_number = integer(randomVec(numberOfDigits));
-    cout << random_number;
+    //cout << random_number;
     int guess = 0000;
     while(random_number != guess){
         cout << "Give your guess\n";
