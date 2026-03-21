@@ -59,7 +59,7 @@ There are 1 bulls and 2 cows
 
 * Support digits from 0–9 (including leading zero handling)
 * Use modern C++ `<random>` for better randomness
-* Improve time complexity of cow calculation (Currently it is O(n^2))
+* Improve time complexity of cow calculation (Currently it is O(n^2)) ✅
 * Add attempt counter / scoring system
 * Refactor to use strings instead of integers
 
