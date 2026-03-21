@@ -63,12 +63,5 @@ There are 1 bulls and 2 cows
 * Add attempt counter / scoring system
 * Refactor to use strings instead of integers
 
-## 📁 Project Structure
 
-```
-.
-├── main.cpp
-├── .gitignore
-└── README.md
-```
 
