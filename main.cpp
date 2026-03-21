@@ -85,7 +85,7 @@ void countBullsAndCows(int guess, int choice){
 void initialise(){
     int numberOfDigits = 4;
     int random_number = integer(randomVec(numberOfDigits));
-    cout << random_number;
+    cout << random_number << endl;
     int guess = 0000;
     while(random_number != guess){
         cout << "Give your guess\n";
