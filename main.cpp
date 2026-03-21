@@ -51,39 +51,33 @@ void countBullsAndCows(int guess, int choice){
     vector<int> choiceVector = convertToVector(choice);
     //Count bulls
     int bulls = 0;
-    vector<int> bullsIndex;
     for(int i =0; i<guessVector.size(); i++){
         if(guessVector[i]==choiceVector[i]){
             bulls+=1;
-            bullsIndex.push_back(i);
             
         }
     }
     cout << "There are "<< bulls<<" bulls and ";
-    for(int i =0; i<bullsIndex.size(); i++){
-        auto itGuess = guessVector.begin()+bullsIndex[i];
-        auto itChoice= choiceVector.begin()+bullsIndex[i];
-
-        guessVector.erase(itGuess);
-        choiceVector.erase(itChoice);
-    }
     //Count cows
     int cows = 0;
-    set<int> guessSet(guessVector.begin(), guessVector.end());
-    set<int> choiceSet(choiceVector.begin(), choiceVector.end());
-    auto gt = guessSet.begin();
-    auto ct = choiceSet.begin();
-    for(int i =0; i<choiceSet.size(); i++){
-        if(*(gt ++) == *(ct ++)){
-            cows+=1;
+
+    for(int i = 0; i< guessVector.size(); i++){
+        for(int j = 0; j<choiceVector.size(); j++){
+            if(guessVector[i] == choiceVector[j]){
+                cows += 1;
+            }
         }
     }
+    cows = cows-bulls;
     cout<<cows<<" cows\n";
 }
 
 // Controls the game flow
 void initialise(){
-    int numberOfDigits = 4;
+    int numberOfDigits;
+    cout << "Choose the number of digits(1-9):";
+    cin >> numberOfDigits;
+    if(numberOfDigits>=1 && numberOfDigits<=9){
     int random_number = integer(randomVec(numberOfDigits));
     cout << random_number << endl;
     int guess = 0000;
@@ -104,7 +98,11 @@ void initialise(){
             countBullsAndCows(guess,random_number);
         }
     }
-    cout << "You have successfully guessed the number\n";
+    cout << "You have successfully guessed the number\n";}
+    else{
+        cout << "Please choose a valid number of digits.\n";
+        initialise();
+    }
 }
 
 int main(){
