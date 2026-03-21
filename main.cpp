@@ -85,7 +85,7 @@ void countBullsAndCows(int guess, int choice){
 void initialise(){
     int numberOfDigits = 4;
     int random_number = integer(randomVec(numberOfDigits));
-    //cout << random_number;
+    cout << random_number;
     int guess = 0000;
     while(random_number != guess){
         cout << "Give your guess\n";
@@ -98,14 +98,13 @@ void initialise(){
             cout << "Invalid Input: Please give a "<<numberOfDigits<<" digit number.\n";
         }
         else if(guessSet.size()!=numberOfDigits){
-            cout << "Invalid Input: Please give a guess with all unique digit\ns";
+            cout << "Invalid Input: Please give a guess with all unique digit\n";
         }
         else{
             countBullsAndCows(guess,random_number);
         }
-
-
     }
+    cout << "You have successfully guessed the number\n";
 }
 
 int main(){
