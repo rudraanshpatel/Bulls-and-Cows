@@ -98,7 +98,7 @@ void initialise(){
             cout << "Invalid Input: Please give a "<<numberOfDigits<<" digit number.\n";
         }
         else if(guessSet.size()!=numberOfDigits){
-            cout << "Invalid Input: Please give a guess with all unique digit\ns";
+            cout << "Invalid Input: Please give a guess with all unique digits\n";
         }
         else{
             countBullsAndCows(guess,random_number);
