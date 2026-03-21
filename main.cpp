@@ -78,7 +78,7 @@ void initialise(){
     cin >> numberOfDigits;
     if(numberOfDigits>=1 && numberOfDigits<=9){
     int random_number = integer(randomVec(numberOfDigits));
-    cout << random_number << endl;
+    //cout << random_number << endl;
     int guess = 0000;
     while(random_number != guess){
         cout << "Give your guess\n";

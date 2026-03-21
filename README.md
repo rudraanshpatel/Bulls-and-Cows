@@ -2,7 +2,7 @@
 
 A command-line implementation of the classic Bulls and Cows game using C++ and STL.
 
-## 📌 Description
+##  Description
 
 The program generates a random number with unique digits.
 The player must guess the number within multiple attempts.
@@ -10,7 +10,7 @@ The player must guess the number within multiple attempts.
 * **Bulls** → correct digit in the correct position
 * **Cows** → correct digit in the wrong position
 
-## ⚙️ Features
+##  Features
 
 * Random number generation with unique digits
 * Digits are chosen from **1–9 only (no 0)**
@@ -18,14 +18,14 @@ The player must guess the number within multiple attempts.
 * Uses C++ STL (`vector`, `set`)
 * Interactive CLI gameplay
 
-## 🧠 Concepts Used
+##  Concepts Used
 
 * STL containers (`vector`, `set`)
 * Random number generation (`rand()`, `srand()`)
 * Basic algorithms and iteration
 * Input validation and game logic
 
-## 🚀 How to Run
+##  How to Run
 
 ### Compile
 
@@ -39,7 +39,7 @@ g++ main.cpp -o game
 ./game
 ```
 
-## 🎮 Example Gameplay
+##  Example Gameplay
 
 ```
 Choose the number of digits (1-9): 4
@@ -48,14 +48,14 @@ Give your guess:
 There are 1 bulls and 2 cows
 ```
 
-## ⚠️ Notes
+##  Notes
 
 * Digits are unique (no repetition allowed)
 * Computer-generated digits are from **1 to 9 only**
 * Leading zeros are not supported
 * Randomness is based on `rand()`
 
-## 🔧 Possible Improvements
+##  Possible Improvement
 
 * Support digits from 0–9 (including leading zero handling)
 * Use modern C++ `<random>` for better randomness
