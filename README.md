@@ -28,6 +28,7 @@ The player must guess the number within multiple attempts.
 ##  How to Run
 
 ### Compile
+- Install GCC compiler ([Windows](https://youtu.be/k6juv3mIr9o?si=is3sMkluM_ar-bbV))
 
 ```bash
 g++ main.cpp -o game
