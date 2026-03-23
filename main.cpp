@@ -80,6 +80,7 @@ void initialise(){
     int random_number = integer(randomVec(numberOfDigits));
     //cout << random_number << endl;
     int guess = 0000;
+    int attemptCount = 0;
     while(random_number != guess){
         cout << "Give your guess\n";
         cin >> guess;
@@ -95,9 +96,13 @@ void initialise(){
         }
         else{
             countBullsAndCows(guess,random_number);
+            attemptCount += 1;
         }
     }
-    cout << "You have successfully guessed the number\n";}
+    cout << "You have successfully guessed the number in";
+    cout << " "<< attemptCount <<" attempts\n";
+    }
+
     else{
         cout << "Please choose a valid number of digits.\n";
         initialise();
