@@ -61,7 +61,8 @@ There are 1 bulls and 2 cows
 * Use modern C++ `<random>` for better randomness
 * Refactor cow calculation to iterate over `choiceVector` directly instead of using `set` size as loop bound ✅
 * Add attempt counter / scoring system ✅
-* Refactor to use strings instead of integers
+* Replace recursive re-prompt on invalid digit count with a loop ✅
+* Refactor to use strings instead of integers ✅
 
 
 
