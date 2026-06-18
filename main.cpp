@@ -60,11 +60,10 @@ void countBullsAndCows(int guess, int choice){
     cout << "There are "<< bulls<<" bulls and ";
     //Count cows
     int cows = 0;
-    set<int> guessSet(guessVector.begin(),guessVector.end());
-    for(int i =0; i<guessSet.size();i++){
-        auto it = guessSet.find(choiceVector[i]);
-        if(it != guessSet.end()){
-            cows+=1;
+    set<int> guessSet(guessVector.begin(), guessVector.end());
+    for(int digit : choiceVector){
+        if(guessSet.count(digit)){
+            cows += 1;
         }
     }
     cows = cows-bulls;
