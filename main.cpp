@@ -46,13 +46,7 @@ void countBullsAndCows(vector<int>& guessVec, vector<int>& secretVec){
 
 // Controls the game flow
 void initialise(){
-    int numberOfDigits;
-    while(true){
-        cout << "Choose the number of digits(1-9):";
-        cin >> numberOfDigits;
-        if(numberOfDigits >= 1 && numberOfDigits <= 9) break;
-        cout << "Please choose a valid number of digits.\n";
-    }
+    const int numberOfDigits = 4;
     {
         vector<int> secretVec = randomVec(numberOfDigits);
 
