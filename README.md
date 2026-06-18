@@ -58,6 +58,7 @@ There are 1 bulls and 2 cows
 ##  Possible Improvement
 
 * Support digits from 0–9 (including leading zeros) ✅
+* Guard `randomVec` against n exceeding digit pool size (assert added) ✅
 * Use modern C++ `<random>` for better randomness
 * Refactor cow calculation to iterate over `choiceVector` directly instead of using `set` size as loop bound ✅
 * Add attempt counter / scoring system ✅

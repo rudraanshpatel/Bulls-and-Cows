@@ -9,6 +9,8 @@ vector<int> randomVec(int n){
     vector<int> pool;
     for(int i = 0; i <= 9; i++) pool.emplace_back(i);
 
+    assert(n <= (int)pool.size());
+
     while(result.size() != n){
         int idx = rand() % pool.size();
         result.push_back(pool[idx]);
