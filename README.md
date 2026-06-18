@@ -13,7 +13,7 @@ The player must guess the number within multiple attempts.
 ##  Features
 
 * Random number generation with unique digits
-* Digits are chosen from **1–9 only (no 0)**
+* Digits are chosen from **0–9** (including leading zeros)
 * Input validation (length + uniqueness)
 * Uses C++ STL (`vector`, `set`)
 * Interactive CLI gameplay
@@ -52,13 +52,12 @@ There are 1 bulls and 2 cows
 ##  Notes
 
 * Digits are unique (no repetition allowed)
-* Computer-generated digits are from **1 to 9 only**
-* Leading zeros are not supported
+* Computer-generated digits are from **0 to 9** (all digits supported, including leading zeros)
 * Randomness is based on `rand()`
 
 ##  Possible Improvement
 
-* Support digits from 0–9 (including leading zero handling)
+* Support digits from 0–9 (including leading zeros) ✅
 * Use modern C++ `<random>` for better randomness
 * Refactor cow calculation to iterate over `choiceVector` directly instead of using `set` size as loop bound ✅
 * Add attempt counter / scoring system ✅

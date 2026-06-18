@@ -1,73 +1,38 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-//Converts vector into integer
-int integer(vector<int> vec){
-    int result = 0;
-    for(int i: vec){
-        result*=10;
-        result+=i;
-    }
-    return result;
-}
-//Converts integer into vector
-vector<int> convertToVector(int n){
-    vector<int> vec;
-    while(n>0){
-        auto it = vec.begin();
-        vec.insert(it,n%10);
-        n/=10;
-    }
-    return vec;
-}
 
-//Generate a vector of 4 randomly generated digits
+//Generate a vector of n randomly generated unique digits (0-9)
 vector<int> randomVec(int n){
     vector<int> result;
-    
-    // A vector of integers from 1-9
-    vector<int> integers;
-    for(int i = 1; i<=9; i++){
-        integers.emplace_back(i);
+
+    vector<int> pool;
+    for(int i = 0; i <= 9; i++) pool.emplace_back(i);
+
+    while(result.size() != n){
+        int idx = rand() % pool.size();
+        result.push_back(pool[idx]);
+        pool.erase(pool.begin() + idx);
     }
 
-   // Generates the random n sized vector
-   while(result.size()!=n){
-       // We create a random index from 0-8
-       int randomIndex = rand()%integers.size();
-       int randomDigit = integers.at(randomIndex);
-       result.push_back(randomDigit);
-       auto it = integers.begin()+randomIndex;
-       integers.erase(it);
-
-   }
-   return result;
-
-
+    return result;
 }
+
 //Function to process user guesses
-void countBullsAndCows(int guess, int choice){
-    vector<int> guessVector = convertToVector(guess);
-    vector<int> choiceVector = convertToVector(choice);
-    //Count bulls
+void countBullsAndCows(vector<int>& guessVec, vector<int>& secretVec){
     int bulls = 0;
-    for(int i =0; i<guessVector.size(); i++){
-        if(guessVector[i]==choiceVector[i]){
-            bulls+=1;
-            
-        }
+    for(int i = 0; i < (int)guessVec.size(); i++){
+        if(guessVec[i] == secretVec[i]) bulls++;
     }
-    cout << "There are "<< bulls<<" bulls and ";
-    //Count cows
+    cout << "There are " << bulls << " bulls and ";
+
     int cows = 0;
-    set<int> guessSet(guessVector.begin(), guessVector.end());
-    for(int digit : choiceVector){
-        if(guessSet.count(digit)){
-            cows += 1;
-        }
+    set<int> guessSet(guessVec.begin(), guessVec.end());
+    for(int digit : secretVec){
+        if(guessSet.count(digit)) cows++;
     }
-    cows = cows-bulls;
-    cout<<cows<<" cows\n";
+    cows -= bulls;
+    cout << cows << " cows\n";
 }
 
 // Controls the game flow
@@ -75,33 +40,49 @@ void initialise(){
     int numberOfDigits;
     cout << "Choose the number of digits(1-9):";
     cin >> numberOfDigits;
-    if(numberOfDigits>=1 && numberOfDigits<=9){
-    int random_number = integer(randomVec(numberOfDigits));
-    //cout << random_number << endl;
-    int guess = 0000;
-    int attemptCount = 0;
-    while(random_number != guess){
-        cout << "Give your guess\n";
-        cin >> guess;
-        std::string s = std::to_string(guess);
-        int length = s.size();
-        vector<int> guessVector = convertToVector(guess);
-        set<int> guessSet(guessVector.begin(), guessVector.end()); 
-        if(length!=numberOfDigits){
-            cout << "Invalid Input: Please give a "<<numberOfDigits<<" digit number.\n";
-        }
-        else if(guessSet.size()!=numberOfDigits){
-            cout << "Invalid Input: Please give a guess with all unique digits\n";
-        }
-        else{
-            countBullsAndCows(guess,random_number);
-            attemptCount += 1;
-        }
-    }
-    cout << "You have successfully guessed the number in";
-    cout << " "<< attemptCount <<" attempts\n";
-    }
+    if(numberOfDigits >= 1 && numberOfDigits <= 9){
+        vector<int> secretVec = randomVec(numberOfDigits);
 
+        int attemptCount = 0;
+        bool won = false;
+
+        while(!won){
+            cout << "Give your guess\n";
+            string guess;
+            cin >> guess;
+
+            if((int)guess.size() != numberOfDigits){
+                cout << "Invalid Input: Please give a " << numberOfDigits << " digit number.\n";
+                continue;
+            }
+
+            bool allDigits = true;
+            for(char c : guess){
+                if(!isdigit(c)){ allDigits = false; break; }
+            }
+            if(!allDigits){
+                cout << "Invalid Input: Please enter digits only.\n";
+                continue;
+            }
+
+            vector<int> guessVec;
+            for(char c : guess) guessVec.push_back(c - '0');
+
+            set<int> guessSet(guessVec.begin(), guessVec.end());
+            if((int)guessSet.size() != numberOfDigits){
+                cout << "Invalid Input: Please give a guess with all unique digits\n";
+                continue;
+            }
+
+            countBullsAndCows(guessVec, secretVec);
+            attemptCount++;
+
+            if(guessVec == secretVec) won = true;
+        }
+
+        cout << "You have successfully guessed the number in";
+        cout << " " << attemptCount << " attempts\n";
+    }
     else{
         cout << "Please choose a valid number of digits.\n";
         initialise();
